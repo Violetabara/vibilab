@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="ViBiLab">
+    <meta name="keywords" content="cyber, projects, security, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ViBiLab</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+<style>
+    .bubo {
+     height: auto;
+     background-color: #1c1c1cd5;
+     width: 60%;
+    margin-left: 20%;
+    top: 2000px;
+
+    }
+  body {
+    background: #0b0b0b;
+    color: #e6e6e6;
+    font-family: Consolas, monospace;
+    text-align: center;
+
+  }
+
+  a.download {
+    display: inline-block;
+    color: #00ffa6;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  input {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #00ffa6;
+    background: #000;
+    color: #fff;
+    outline: none;
+  }
+
+  button {
+    padding: 10px 20px;
+    background: #00ffa6;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  #result {
+    margin-top: 25px;
+    font-size: 20px;
+  }
+
+  /* ФЕЙЕРВЕРКИ */
+  .firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+    pointer-events: none;
+  }
+
+  @keyframes explode {
+    0% { opacity: 1; transform: scale(1) translate(0,0); }
+    100% { opacity: 0; transform: scale(0.2) translate(var(--x), var(--y)); }
+  }
+
+</style>
+</head>
+
+<body>
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="img/logo.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+
+                </div>
+                <div style="margin-left: 40%;">
+                    <div class="breadcrumb-text">
+                        <h3 >Decoding phrase</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+<div class="video-background">
+    <video autoplay muted loop id="myVideo">
+        <source src="vid/pr.mp4" type="video/mp4">
+    </video>
+</div>
+<div class="bubo">
+    <!-- Контент страницы -->
+
+    <!-- Blog Section Begin -->
+     <br>
+     <br>
+    <p style="margin-left: 10%; margin-right: 10%; color: #fff;">A clean desk policy (CDP) is a workplace rule requiring employees to keep their desks tidy and secure sensitive information (physical and digital) when away, preventing data breaches, supporting hybrid work, and ensuring professionalism by storing papers, locking computers (clear screen), and securing devices like USBs, adhering to regulations like GDPR. You have to find login name on the table.</p>
+    <br>
+    <br>
+    <img src="img/room1.png">
+    <br>
+    <br>
+    <p style="color: #fff;">As result of breach multiple files leaked from DB. You can use this file for decoding leaked hash.</p>
+
+    <a class="download" href="pdf/hash.txt" download>📄 Download hash.txt</a>
+
+    <br><br>
+
+    <input id="login" placeholder="Your login">
+    <br>
+    <input id="password" placeholder="Your password">
+    <br>
+    <button onclick="check()">Check</button>
+
+
+    <div id="result"></div>
+        <br>
+    <br>
+
+
+ <div class="wrap">
+         <a href="room.html" class="button">Back to CTF-library</a>
+    </div>
+
+<br>
+<br>
+<br>
+</div>
+
+
+
+<script>
+  // правильные данные
+  const RIGHT_LOGIN = "VIBI";          // логин
+  const RIGHT_PASSWORD = "tomato";    // пароль, который берут из хэша
+
+  function check() {
+    const login = document.getElementById("login").value.trim();
+    const pass = document.getElementById("password").value.trim();
+    const result = document.getElementById("result");
+
+    if (login === RIGHT_LOGIN && pass === RIGHT_PASSWORD) {
+      result.innerHTML = `<h2>flag: CTF{double_auth_success}</h2>`;
+      startFireworks();
+    } else {
+      result.textContent = "Something is wrong.";
+    }
+  }
+
+  function startFireworks() {
+    for (let i = 0; i < 40; i++) {
+      const f = document.createElement("div");
+      f.className = "firework";
+      f.style.left = Math.random() * window.innerWidth + "px";
+      f.style.top = Math.random() * window.innerHeight + "px";
+      f.style.setProperty("--x", (Math.random() * 300 - 150) + "px");
+      f.style.setProperty("--y", (Math.random() * 300 - 150) + "px");
+      document.body.appendChild(f);
+      setTimeout(() => f.remove(), 1000);
+    }
+  }
+</script>
+
+</div>
+
+
+
+
+    <!-- Blog Section End -->
+</div>
+    <!-- Footer Section Begin -->
+    <section class="footer-section" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-option">
+                        <div class="fo-logo">
+                            <a href="#">
+                                <img src="img/logo.png" alt="">
+                            </a>
+                        </div>
+                        <ul>
+                            <li>Phone: +31 6 4719563</li>
+                            <li>Email: vibara1308@gmail.com</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget fw-links">
+                        <h5>Social profiles</h5>
+                        <ul>
+                            <li><a href="https://www.instagram.com/violetabaranovska?igsh=MXd2eHl3MTg1bGpscQ==">Instagram</a></li>
+                            <li><a href="https://www.linkedin.com/in/violeta-baranovska-83192b2a9/">LinkedIn</a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61565629328614&rdid=gILu3TnbmaLQcFrt&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17nzrYdCiB%2F#">Facebook</a></li>
+                            <li><a href="https://github.com/Violetabara">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div style="margin-left: 50%;"><p>
+ <h>2026</h>
+  </p></div>
+        </div>
+    </section>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
